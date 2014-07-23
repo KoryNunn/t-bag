@@ -8,15 +8,14 @@
   "dependencies": {
     "consuela": "^1.0.0",
     "crel": "^1.1.2",
-    "doc-js": "^1.0.0",
-    "grape": "^0.1.10"
+    "doc-js": "^1.0.0"
   },
   "devDependencies": {
     "grape": "^1.0.0",
     "jsdom": "^0.10.6"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test"
   },
   "author": "",
   "license": "ISC"
