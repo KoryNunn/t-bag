@@ -6,6 +6,8 @@ var crel = require('crel'),
 function Bag(message, settings){
     var bag = this;
 
+    this.consuela = new Consuela();
+
     if(!settings){
         settings = {};
     }
@@ -16,8 +18,8 @@ function Bag(message, settings){
         message
     );
 
-    // this is a 'consuela', which can auto-debind events);
-    this._watch(this.element);
+    // consuela for auto-debinding events;
+    this.consuela.watch(this.element);
 
     if(!settings.sticky){
         setTimeout(function(){
@@ -25,7 +27,6 @@ function Bag(message, settings){
         }, settings.hideTime || defaultHideTime);
     }
 }
-Bag = Consuela.init(Bag);
 Bag.prototype.remove = function(){
     var bag = this,
         remove = this._remove.bind(this);
@@ -45,7 +46,9 @@ Bag.prototype._remove = function(){
             doc(bagWrapper.parentNode).addClass('tBagEmpty');
         }
     }
-    this._cleanup();
+
+    // clean up events
+    this.consuela.cleanup();
 };
 
 function Box(){

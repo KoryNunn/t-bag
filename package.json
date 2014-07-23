@@ -6,7 +6,7 @@
     "test": "test"
   },
   "dependencies": {
-    "consuela": "^1.0.0",
+    "consuela": "^4.2.0",
     "crel": "^1.1.2",
     "doc-js": "^1.0.0"
   },

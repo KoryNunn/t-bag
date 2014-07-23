@@ -63,3 +63,31 @@ test('box', function(t){
 
     t.equal(box.element.className, 'tBox' , 'tBagEmpty class removed after adding bag');
 });
+
+function click(element){
+    var event = document.createEvent('MouseEvents');
+    event.initEvent('click', true, true);
+    element.dispatchEvent(event, true);
+}
+
+test('events clean', function(t){
+    t.timeout(time(2));
+    t.plan(3);
+
+    var bag = new tBag.Bag('things', bagSettings());
+
+    bag.element.addEventListener('click', function(){
+        t.pass('Recieved one click event');
+    });
+
+    click(bag.element);
+
+    document.body.appendChild(bag.element);
+
+    setTimeout(function(){
+        t.ok(!bag.element.parentNode, 'Bag was automatically removed');
+        click(bag.element);
+    },time(1.5));
+
+    t.ok(bag.element.parentNode, 'Element has a parent node');
+});
