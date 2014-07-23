@@ -37,12 +37,19 @@ Bag.prototype.remove = function(){
     setTimeout(remove, this.animationTime);
 };
 Bag.prototype._remove = function(){
-    this.element.parentNode && this.element.parentNode.removeChild(this.element);
+    var bagWrapper = this.element.parentNode;
+
+    if (bagWrapper) {
+        bagWrapper.removeChild(this.element);
+        if (bagWrapper.children && !bagWrapper.children.length) {
+            doc(bagWrapper.parentNode).addClass('tBagEmpty');
+        }
+    }
     this._cleanup();
 };
 
 function Box(){
-    this.element = crel('div', {'class':'tBox'},
+    this.element = crel('div', {'class':'tBox tBagEmpty'},
         this.bagWrapper = crel('div', {'class':'tBagWrapper'})
     );
 }
@@ -54,6 +61,7 @@ Box.prototype.bag = function(message, settings){
     return bag;
 };
 Box.prototype.addBag = function(bag){
+    doc(this.element).removeClass('tBagEmpty');
     this.bagWrapper.appendChild(bag.element);
 };
 

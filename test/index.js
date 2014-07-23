@@ -43,7 +43,7 @@ test('bag', function(t){
 
 test('box', function(t){
     t.timeout(time(2));
-    t.plan(3);
+    t.plan(6);
 
     var box = new tBag.Box(),
         bag;
@@ -53,9 +53,13 @@ test('box', function(t){
     setTimeout(function(){
         t.ok(box.element.parentNode, 'Box is still in the DOM');
         t.ok(!bag.element.parentNode, 'Bag was automatically removed');
+        t.equal(box.element.className, 'tBox tBagEmpty' , 'tBagEmpty class added to tBox after empty');
     },time(1.5));
 
     t.ok(box.element.parentNode, 'Element has a parent node');
+    t.equal(box.element.className, 'tBox tBagEmpty' , 'tBagEmpty class added to tBox');
 
-    bag = box.bag('things', bagSettings())
+    bag = box.bag('things', bagSettings());
+
+    t.equal(box.element.className, 'tBox' , 'tBagEmpty class removed after adding bag');
 });
