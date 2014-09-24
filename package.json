@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "consuela": "^4.2.0",
-    "crel": "^1.1.2",
+    "crel": "^2.1.2",
     "doc-js": "^1.0.0"
   },
   "devDependencies": {
@@ -18,5 +18,14 @@
     "test": "node test"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": "Like a toast, but dangling from above..",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KoryNunn/t-bag.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KoryNunn/t-bag/issues"
+  },
+  "homepage": "https://github.com/KoryNunn/t-bag"
 }
