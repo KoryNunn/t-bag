@@ -57,6 +57,10 @@ function Box(){
     );
 }
 Box.prototype.bag = function(message, settings){
+    if (this.bagWrapper.children.length >= this._maxBags) {
+        return;
+    }
+
     var bag = new Bag(message, settings);
 
     this.addBag(bag);
@@ -66,6 +70,14 @@ Box.prototype.bag = function(message, settings){
 Box.prototype.addBag = function(bag){
     doc(this.element).removeClass('tBagEmpty');
     this.bagWrapper.appendChild(bag.element);
+};
+Box.prototype._maxBags = null;
+Box.prototype.maxBags = function(value) {
+    if(!value || typeof value !== 'number'){
+        return this.maxBags;
+    }
+
+    this._maxBags = value;
 };
 
 module.exports = {
