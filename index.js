@@ -18,6 +18,8 @@ function Bag(message, settings){
         message
     );
 
+    this.element._bag = this;
+
     // consuela for auto-debinding events;
     this.consuela.watch(this.element);
 
@@ -57,11 +59,11 @@ function Box(){
     );
 }
 Box.prototype.bag = function(message, settings){
-    if (this.bagWrapper.children.length >= this._maxBags) {
-        return;
-    }
-
     var bag = new Bag(message, settings);
+
+    if (this.bagWrapper.children.length >= this._maxBags) {
+        this.bagWrapper.children[this._maxBags-1]._bag.remove();
+    }
 
     this.addBag(bag);
 
