@@ -62,7 +62,7 @@ Box.prototype.bag = function(message, settings){
     var bag = new Bag(message, settings);
 
     if (this.bagWrapper.children.length >= this._maxBags) {
-        this.bagWrapper.children[this._maxBags-1]._bag.remove();
+        this.bagWrapper.children[0]._bag.remove();
     }
 
     this.addBag(bag);
