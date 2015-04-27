@@ -73,13 +73,17 @@ Box.prototype.addBag = function(bag){
     doc(this.element).removeClass('tBagEmpty');
     this.bagWrapper.appendChild(bag.element);
 };
-Box.prototype._maxBags = null;
+Box.prototype._maxBags = Infinity;
 Box.prototype.maxBags = function(value) {
-    if(!value || typeof value !== 'number'){
+    if(arguments.length === 0){
         return this.maxBags;
     }
 
-    this._maxBags = value;
+    if(isNaN(value)){
+        value = Infinity;
+    }
+
+    this._maxBags = parseInt(value);
 };
 
 module.exports = {
